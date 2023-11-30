@@ -1,0 +1,15 @@
+package com.kitabkaksha.service;
+
+import java.util.List;
+
+import com.kitabkaksha.entity.Users;
+
+public interface UserService {
+	public Users createUser(Users user);
+
+	public Users getByUserId(Integer userId);
+
+	public List<Users> getAllUser();
+
+	public boolean varifyOtp(Integer userId, Integer otp);
+}
