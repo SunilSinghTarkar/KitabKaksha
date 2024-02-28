@@ -25,8 +25,8 @@ public class Users {
 	private String email;
 	private String password;
 	private String role;
-	private String isActive;
-	private String isVarified;
+	private boolean isActive;
+	@JsonIgnore
 	@OneToOne
 	private Carts cart;
 	@JsonIgnore
