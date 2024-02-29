@@ -50,9 +50,4 @@ public class BooksController {
 		return new ResponseEntity<List<Books>>(bookList, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{bookId}")
-	public ResponseEntity<String> deleteBookById(@PathVariable Integer bookId) {
-		String message = bookService.deleteBookById(bookId);
-		return new ResponseEntity<String>(message, HttpStatus.ACCEPTED);
-	}
 }

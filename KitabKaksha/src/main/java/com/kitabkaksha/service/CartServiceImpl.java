@@ -3,10 +3,13 @@ package com.kitabkaksha.service;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.kitabkaksha.entity.Books;
 import com.kitabkaksha.entity.Carts;
+import com.kitabkaksha.entity.Users;
 import com.kitabkaksha.exception.NotFoundException;
 import com.kitabkaksha.repository.CartsRepository;
 import com.kitabkaksha.repository.UsersRepository;
@@ -47,7 +50,10 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public Carts getCart() {
-		Carts cart = cartRepo.findById(1).orElseThrow(() -> new NotFoundException("Cart not found!"));
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		Users user = userRepo.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found!"));
+		Carts cart = user.getCart();
 		return cart;
 	}
 }
