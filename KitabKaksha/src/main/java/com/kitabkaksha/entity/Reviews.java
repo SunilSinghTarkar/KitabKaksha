@@ -32,5 +32,4 @@ public class Reviews {
 	private LocalDateTime timeStamp;
 	
 	
-	
 }
