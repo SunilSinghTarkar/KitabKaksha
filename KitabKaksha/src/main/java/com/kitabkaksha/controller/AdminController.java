@@ -11,6 +11,8 @@ import com.kitabkaksha.entity.Users;
 import com.kitabkaksha.exception.NotFoundException;
 import com.kitabkaksha.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -20,7 +22,7 @@ public class AdminController {
 	private PasswordEncoder passwordEncoder;
 
 	@PostMapping("/registers")
-	public Users addUser(@RequestBody Users user) {
+	public Users addUser(@Valid @RequestBody Users user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRole("ROLE_ADMIN");
 		try {

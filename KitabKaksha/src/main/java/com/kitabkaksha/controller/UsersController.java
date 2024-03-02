@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kitabkaksha.entity.Users;
 import com.kitabkaksha.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
@@ -28,7 +29,7 @@ public class UsersController {
 	private PasswordEncoder passwordEncoder;
 
 	@PostMapping("/registers")
-	public Users addUser(@RequestBody Users user) {
+	public Users addUser(@Valid @RequestBody Users user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRole("ROLE_USER");
 		return userService.createUser(user);

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kitabkaksha.entity.Books;
 import com.kitabkaksha.service.BookService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class BooksController {
 	private BookService bookService;
 
 	@PostMapping
-	public ResponseEntity<Books> addBook(@RequestBody Books book) {
+	public ResponseEntity<Books> addBook(@Valid @RequestBody Books book) {
 		log.info("Inside BookController's addBook method");
 		Books savedBook = bookService.addBook(book);
 		return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
